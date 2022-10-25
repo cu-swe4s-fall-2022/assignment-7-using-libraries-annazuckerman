@@ -25,7 +25,11 @@ def open_file(filename):
     if os.path.getsize(filename) == 0:
         raise FileNotFoundError('Input file must not be empty.')
     try:
-        file = pd.read_csv(filename, header = None)
+        if filename.endswith('.csv'):
+            file = pd.read_csv(filename)
+        else:
+            file = pd.read_csv(filename, header = None)
+
     except Exception:
         raise Exception('Could not open ' + filename + ' for unkown reason, ' +
               'likely incorrect file format (must be comma-separated)')
@@ -86,6 +90,12 @@ def write_matrix_to_file(num_rows, num_columns, file_name):
         None
 
     """   
-    df = pd.DataFrame([1])
-    df.to_csv('file_name', index = False)
+  #  if not type(file_name) == str:
+  #      print('Output file name must be string.')
+  #      sys.exit(1)
+            
+    matrix = get_random_matrix(num_rows, num_columns)
+
+    df = pd.DataFrame(matrix)
+    df.to_csv(file_name, index = False)
     return None
