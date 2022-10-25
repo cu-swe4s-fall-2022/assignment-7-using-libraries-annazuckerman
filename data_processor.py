@@ -55,7 +55,7 @@ def get_random_matrix(num_rows, num_columns):
 
     """   
    
-    rand_arr = np.array([[1,2,3],[4,5,6]])
+    rand_arr = np.random.rand(num_rows, num_columns)
     
     return rand_arr
 
