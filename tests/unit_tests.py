@@ -74,9 +74,9 @@ class TestUtils(unittest.TestCase):
 
         # negative tests
         dp.write_matrix_to_file(4, 5, 'test_read2.csv')
-        cls.assertNotEqual(dp.get_file_dimensions('test_read.csv'), (3,3))
+        cls.assertNotEqual(dp.get_file_dimensions('test_read2.csv'), (2,3))
         os.remove('test_read2.csv')
 
         # error raising tests
-        # cls.assertRaises(Exception, dp.write_matrix_to_file, 3, 4, 10)   
+        cls.assertRaises(Exception, dp.write_matrix_to_file, 3, 4, 10)   
         cls.assertRaises(ValueError, dp.write_matrix_to_file, -1, 2, 'test_read3.csv')
