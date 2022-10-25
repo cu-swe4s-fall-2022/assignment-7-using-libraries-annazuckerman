@@ -30,11 +30,14 @@ class TestUtils(unittest.TestCase):
         """
         
         # positive tests:
+        result_df = dp.get_random_matrix(2,3)
+        cls.assertEqual(result_df.shape, (2,3))
         result_df = dp.get_random_matrix(3,4)
         cls.assertEqual(result_df.shape, (3,4))
 
         # negative tests:
-        #cls.assertEqual(dp.get_random_matrix(3,4), ??)
+        result_df = dp.get_random_matrix(5,6)
+        cls.assertNotEqual(result_df.shape, (3, 4))
         
         # error raising tests
 
@@ -47,8 +50,7 @@ class TestUtils(unittest.TestCase):
         cls.assertEqual(dp.get_file_dimensions('iris.data'), (150, 5))
 
         # negative tests:
-        cls.assertEqual(dp.get_file_dimensions('test.csv'), (150, 5))
-        
+                
         # error raising tests
 
     def test_write_matrix_to_file(cls):
