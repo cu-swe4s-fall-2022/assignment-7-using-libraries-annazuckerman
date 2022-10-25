@@ -40,6 +40,9 @@ class TestUtils(unittest.TestCase):
         cls.assertNotEqual(result_df.shape, (3, 4))
         
         # error raising tests
+        cls.assertRaises(TypeError, dp.get_random_matrix, 'one', 'two')
+        cls.assertRaises(TypeError, dp.get_random_matrix, 1.5, 2.5)
+        cls.assertRaises(ValueError, dp.get_random_matrix, -1, 2)
 
     def test_get_file_dimensions(cls):
 
