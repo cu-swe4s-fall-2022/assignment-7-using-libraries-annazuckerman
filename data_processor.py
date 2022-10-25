@@ -17,26 +17,18 @@ def open_file(filename):
 
     """
     if not os.path.exists(filename):
-        print('Input file ' + filename + ' could not be found.')
-        sys.exit(1)
+        raise FileNotFoundError('Input file ' + filename + ' could not be found in directory ' + str(os.getcwd()))
     if os.path.isdir(filename):
-        print('Input file ' + filename + ' is a directory.')
-        sys.exit(1)
+        raise IsADirectoryError('Input file ' + filename + ' is a directory.')
     if not os.access(filename, os.R_OK):
-        print('Input file ' + filename + ' is not readable.')
-        sys.exit(1)
-    if not (filename.endswith('.csv')):
-        print('Input file must be a csv file.')
-        sys.exit(1)
+        raise PermissionError('Input file ' + filename + ' is not readable.')
     if os.path.getsize(filename) == 0:
-        print('Input file must not be empty.')
-        sys.exit(1)
+        raise FileNotFoundError('Input file must not be empty.')
     try:
         file = pd.read_csv(filename, header = None)
     except Exception:
-        print('Could not open ' + filename + ' for unkown reason, ' +
+        raise Exception('Could not open ' + filename + ' for unkown reason, ' +
               'likely incorrect file format (must be comma-separated)')
-        sys.exit(1)
 
     return file
 
@@ -75,8 +67,11 @@ def get_file_dimensions(file_name):
         shape: (tuple of int) Shape of csv file
 
     """   
+    if not type(file_name) == str:
+        raise TypeError('Input file name must be string.')
 
-    shape = (150, 5)
+    file = open_file(file_name)
+    shape = file.shape
     return shape
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
