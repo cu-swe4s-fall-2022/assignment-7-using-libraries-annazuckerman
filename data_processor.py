@@ -90,9 +90,8 @@ def write_matrix_to_file(num_rows, num_columns, file_name):
         None
 
     """   
-  #  if not type(file_name) == str:
-  #      print('Output file name must be string.')
-  #      sys.exit(1)
+    if not type(file_name) == str:
+        raise TypeError('Output file name must be string.')
             
     matrix = get_random_matrix(num_rows, num_columns)
 
