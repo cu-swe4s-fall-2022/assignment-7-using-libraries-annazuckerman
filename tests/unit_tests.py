@@ -14,14 +14,16 @@ class TestUtils(unittest.TestCase):
         """ Set up for unit testing by creating toy data
         """
         arr = [[1,2,3],[4,5,6]]
-        np.savetxt('test.data', arr, delimiter = ',')
+        np.savetxt('test1.data', arr, delimiter = ',')
+        pd.DataFrame(arr).to_csv('test2.csv', index = False)
 
     @classmethod
     def tearDownClass(cls):
 
         """ Tear down unit testing toy data
         """
-        os.remove('test.data')
+        os.remove('test1.data')
+        os.remove('test2.csv')
 
     def test_get_random_matrix(cls):
 
@@ -50,10 +52,11 @@ class TestUtils(unittest.TestCase):
         
         # positive tests:
         cls.assertEqual(dp.get_file_dimensions('iris.data'), (150, 5))
-        cls.assertEqual(dp.get_file_dimensions('test.data'), (2, 3))
+        cls.assertEqual(dp.get_file_dimensions('test1.data'), (2, 3))
+        cls.assertEqual(dp.get_file_dimensions('test2.csv'), (2, 3))
 
         # negative tests:
-        cls.assertNotEqual(dp.get_file_dimensions('test.data'), (150, 5))
+        cls.assertNotEqual(dp.get_file_dimensions('test1.data'), (150, 5))
         
         # error raising tests
         cls.assertRaises(IsADirectoryError, dp.get_file_dimensions, './tests')
@@ -63,9 +66,12 @@ class TestUtils(unittest.TestCase):
 
         """ Unit tests for get_random_matrix() function
         """
+        
+        # NOTE: use function that reads a matrix for these tests!!
 
-        # postive tests
-
+        # positive tests
+        dp.write_matrix_to_file(2, 3, 'test_read.csv')
+        cls.assertEqual(dp.get_file_dimensions('test_read.csv'), (2,3))
         # negative tests
 
         # error raising tests
