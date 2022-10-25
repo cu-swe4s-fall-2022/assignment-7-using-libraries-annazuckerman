@@ -47,7 +47,7 @@ class TestUtils(unittest.TestCase):
 
     def test_get_file_dimensions(cls):
 
-        """ Unit tests for get_random_matrix() function
+        """ Unit tests for get_file_dimensions() function
         """
         
         # positive tests:
@@ -64,15 +64,19 @@ class TestUtils(unittest.TestCase):
 
     def test_write_matrix_to_file(cls):
 
-        """ Unit tests for get_random_matrix() function
+        """ Unit tests for write_matrix_to_file() function
         """
-        
-        # NOTE: use function that reads a matrix for these tests!!
 
         # positive tests
-        dp.write_matrix_to_file(2, 3, 'test_read.csv')
-        cls.assertEqual(dp.get_file_dimensions('test_read.csv'), (2,3))
+        dp.write_matrix_to_file(2, 3, 'test_read1.csv')
+        cls.assertEqual(dp.get_file_dimensions('test_read1.csv'), (2,3))
+        os.remove('test_read1.csv')
+
         # negative tests
+        dp.write_matrix_to_file(4, 5, 'test_read2.csv')
+        cls.assertNotEqual(dp.get_file_dimensions('test_read.csv'), (3,3))
+        os.remove('test_read2.csv')
 
         # error raising tests
-        cls.assertRaises(Exception, dp.write_matrix_to_file, '')      
+        # cls.assertRaises(Exception, dp.write_matrix_to_file, 3, 4, 10)   
+        cls.assertRaises(ValueError, dp.write_matrix_to_file, -1, 2, 'test_read3.csv')
