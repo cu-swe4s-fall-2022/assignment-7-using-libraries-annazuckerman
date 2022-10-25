@@ -54,7 +54,11 @@ def get_random_matrix(num_rows, num_columns):
         matrix: num_rows X num_columns matrix of randomly sampled floats
 
     """   
-   
+    if type(num_rows) != int | type(num_columns) != int:
+        raise TypeError('num_rows and num_columns must be integers.')
+        
+    if num_rows <= 0 | num_columns <= 0:
+        raise ValueError('num_rows and num_columns must be postive integers.')
     rand_arr = np.random.rand(num_rows, num_columns)
     
     return rand_arr
