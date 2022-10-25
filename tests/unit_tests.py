@@ -14,15 +14,14 @@ class TestUtils(unittest.TestCase):
         """ Set up for unit testing by creating toy data
         """
         arr = [[1,2,3],[4,5,6]]
-        df = pd.DataFrame(arr)
-        df.to_csv('test.csv', index = False)
+        np.savetxt('test.data', arr, delimiter = ',')
 
     @classmethod
     def tearDownClass(cls):
 
         """ Tear down unit testing toy data
         """
-        os.remove('test.csv')
+        os.remove('test.data')
 
     def test_get_random_matrix(cls):
 
@@ -51,10 +50,14 @@ class TestUtils(unittest.TestCase):
         
         # positive tests:
         cls.assertEqual(dp.get_file_dimensions('iris.data'), (150, 5))
+        cls.assertEqual(dp.get_file_dimensions('test.data'), (2, 3))
 
         # negative tests:
-                
+        cls.assertNotEqual(dp.get_file_dimensions('test.data'), (150, 5))
+        
         # error raising tests
+        cls.assertRaises(IsADirectoryError, dp.get_file_dimensions, './tests')
+        cls.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'testing.csv')
 
     def test_write_matrix_to_file(cls):
 
