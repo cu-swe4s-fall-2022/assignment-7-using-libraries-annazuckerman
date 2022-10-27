@@ -7,6 +7,7 @@ set -o pipefail  # fail if any prior step failed
 # run pycodestyle on new python scripts used in unit and functional testing
 pycodestyle data_processor.py
 pycodestyle plotter.py
+pycodestyle tests/unit_tests.py
 
 # run unit testing
 python -m unittest tests/unit_tests.py

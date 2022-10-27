@@ -85,7 +85,7 @@ def get_file_dimensions(file_name):
 
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
-    """ Return the dimensions of a csv file.
+    """ Save input matrix to a csv file.
         Parameters:
         ----------
         filename: (string) Ouput file path.
@@ -109,7 +109,7 @@ def write_matrix_to_file(num_rows, num_columns, file_name):
 
 def make_box_plot(data, xticks, title, ylabel, xlabel, figsize,
                   output_file):
-    """
+    """ Make a boxplot of input data.
         Parameters:
         ----------
         data: (array or list)
@@ -159,7 +159,7 @@ def make_box_plot(data, xticks, title, ylabel, xlabel, figsize,
 
 def make_scatter_plot(data, species, title, xcol, ycol, xlabel, ylabel,
                       figsize, output_file):
-    """
+    """ Make a scatter plot of input data.
         Parameters:
         ----------
         data: (array or list)
@@ -211,7 +211,7 @@ def make_scatter_plot(data, species, title, xcol, ycol, xlabel, ylabel,
 def make_multi_plot(data, species, title, xcol, ycol, scat_xlabel,
                     scat_ylabel, box_xlabel, box_ylabel, xticks, figsize,
                     output_file):
-    """
+    """ Make a mulitpanet boxplot and scatter plot of input data.
         Parameters:
         ----------
         data: (array or list)
