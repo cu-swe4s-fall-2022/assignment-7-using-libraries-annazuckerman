@@ -34,11 +34,11 @@ This package will run with the standard python library.
 ## Usage
 
 The Iris data plots can be made using the following syntax:\
-`python plotter.py \
-    --filename [INPUT_FILE] \
-    --box_outfile [BOX_OUTPUT_FILE]\
-    --scatter_outfile [SCATTER_OUTPUT_FILE]\
-    --multipanel_outfile [MULTI_OUTPUT_FILE]`
+`python plotter.py`\
+    `--filename [INPUT_FILE]`\
+    `--box_outfile [BOX_OUTPUT_FILE]`\
+    `--scatter_outfile [SCATTER_OUTPUT_FILE]`\
+    `--multipanel_outfile [MULTI_OUTPUT_FILE]``
 
 The arguments are:\
 `--filename`: (string) Filepath to Iris data.\
@@ -54,11 +54,11 @@ THe file must be comma delimited.
 
 ## Examples
 To produce output plots for Iris data:\
-`python plotter.py \
-    --filename iris.data \
-    --box_outfile iris_boxplot.png \
-    --scatter_outfile petal_width_v_length_scatter.png \
-    --multipanel_outfile multi_panel_figure.png`\
+`python plotter.py`\
+    `--filename iris.data \
+    `--box_outfile iris_boxplot.png \
+    `--scatter_outfile petal_width_v_length_scatter.png \
+    `--multipanel_outfile multi_panel_figure.png`\
     
 Output of the above:\
 See output plots in the `example_outputs` directory.
