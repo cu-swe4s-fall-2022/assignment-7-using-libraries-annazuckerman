@@ -84,3 +84,84 @@ class TestUtils(unittest.TestCase):
         cls.assertRaises(Exception, dp.write_matrix_to_file, 3, 4, 10)
         cls.assertRaises(ValueError, dp.write_matrix_to_file, -1, 2,
                          'test_read3.csv')
+
+    def test_make_scatter_plot(cls):
+
+        # positive tests
+        if os.path.isfile('test_scatter.png'):
+            os.remove('test_scatter.png')
+        file = pd.read_csv('iris.data', header=None)
+        file.columns = ['sepal_width', 'sepal_length', 'petal_width',
+                        'petal_length', 'name']
+        dp.make_scatter_plot(file,
+                             ['Iris-setosa', 'Iris-virginica',
+                              'Iris-versicolor'],
+                             'Iris Data Scatterplot', 'sepal_length',
+                             'sepal_width', 'Sepal length [cm]',
+                             'Sepal width [cm]', [10, 5],
+                             'test_scatter.png')
+        cls.assertTrue(os.path.isfile('test_scatter.png'))
+        os.remove('test_scatter.png')
+
+        # error catching tests
+        cls.assertRaises(Exception, dp.make_scatter_plot, 'iris.data',
+                         ['Iris-setosa', 'Iris-virginica',
+                          'Iris-versicolor'],
+                         'Iris Data Scatterplot', 'sepal_length',
+                         'sepal_width', 'Sepal length [cm]',
+                         'Sepal width [cm]', ['ten', 'five'],
+                         'test_scatter.png')
+
+    def test_make_box_plot(cls):
+
+        # positive tests
+        if os.path.isfile('test_box.png'):
+            os.remove('test_box.png')
+        file = pd.read_csv('iris.data', header=None)
+        file.columns = ['sepal_width', 'sepal_length', 'petal_width',
+                        'petal_length', 'name']
+        dp.make_box_plot(file,
+                         ['sepal_width', 'sepal_length', 'petal_width',
+                          'petal_length'],
+                         'Iris Data Boxplot', 'Value [cm]',
+                         'Measurement Type',
+                         [10, 5],
+                         'test_box.png')
+        cls.assertTrue(os.path.isfile('test_box.png'))
+        os.remove('test_box.png')
+
+        # error catching tests
+        cls.assertRaises(Exception, dp.make_box_plot, file,
+                         ['sepal_width', 'sepal_length', 'petal_width',
+                          'petal_length'],
+                         'Iris Data Boxplot', 'Value [cm]',
+                         'Measurement Type', ['ten', 'five'],
+                         'test_box.png')
+
+    def test_make_multi_plot(cls):
+
+        # positive tests
+        if os.path.isfile('test_multi.png'):
+            os.remove('test_multi.png')
+        file = pd.read_csv('iris.data', header=None)
+        file.columns = ['sepal_width', 'sepal_length', 'petal_width',
+                        'petal_length', 'name']
+        dp.make_multi_plot(file, ['Iris-setosa', 'Iris-virginica',
+                                  'Iris-versicolor'],
+                           'Iris Multi-panel Plot', 'sepal_length',
+                           'petal_width', 'Sepal length [cm]',
+                           'Sepal width [cm]', 'Value [cm]',
+                           'Measurement Type',
+                           ['sepal_width', 'sepal_length', 'petal_width',
+                            'petal_length'], [20, 10], 'test_multi.png')
+        cls.assertTrue(os.path.isfile('test_multi.png'))
+        os.remove('test_multi.png')
+
+        # error catching tests
+        cls.assertRaises(Exception, dp.make_multi_plot, 'iris.data',
+                         ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor'],
+                         'Iris Multi-panel Plot', 'sepal_length',
+                         'petal_width', 'Sepal length [cm]',
+                         'Sepal width [cm]', 'Value [cm]', 'Measurement Type',
+                         ['sepal_width', 'sepal_length', 'petal_width',
+                          'petal_length'], ['ten', 'five'], 'test_multi.png')
