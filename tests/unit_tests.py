@@ -1,9 +1,11 @@
 import unittest
 import random
 import numpy as np
-import data_processor as dp
 import os
 import pandas as pd
+import sys
+sys.path.append('../')
+import data_processor as dp  # nopep8
 
 
 class TestUtils(unittest.TestCase):
