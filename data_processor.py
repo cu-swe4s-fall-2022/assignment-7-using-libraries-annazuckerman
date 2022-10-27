@@ -131,31 +131,29 @@ def make_box_plot(data, xticks, title, ylabel, xlabel, figsize,
     try:
         fig = plt.figure(figsize=figsize, dpi=150)
     except Exception:
-        print('Invalid figsize parameter.')
-        sys.exit(1)
+        raise TypeError('Invalid figsize parameter.')
     ax = plt.gca()
     data = data[xticks]
     try:
         ax.boxplot(data)
     except Exception:
-        print('Invalid data for plotting as boxplots.')
-        sys.exit(1)
+        raise TypeError('Invalid data for plotting as boxplots.')
     try:
         ax.set_xticklabels(xticks, rotation='vertical')
     except Exception:
-        print('Invalid xtick labels parameter.')
+        raise TypeError('Invalid xtick labels parameter.')
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     try:
         plt.title(title)
     except Exception:
-        print('Invalid plot title parameter.')
+        raise TypeError('Invalid plot title parameter.')
     try:
         fig.savefig(output_file, bbox_inches='tight')
         current_dir = os.getcwd()
         print('Output plot saved to: ' + current_dir + '/' + output_file)
     except Exception:
-        print('Invalid output path to save plot.')
+        raise Exception('Invalid output path to save plot.')
 
 
 def make_scatter_plot(data, species, title, xcol, ycol, xlabel, ylabel,
@@ -183,8 +181,7 @@ def make_scatter_plot(data, species, title, xcol, ycol, xlabel, ylabel,
     try:
         fig = plt.figure(figsize=figsize, dpi=150)
     except Exception:
-        print('Invalid figsize parameter.')
-        sys.exit(1)
+        raise TypeError('Invalid figsize parameter.')
     ax = plt.gca()
     try:
         for i in range(len(species)):
@@ -192,21 +189,20 @@ def make_scatter_plot(data, species, title, xcol, ycol, xlabel, ylabel,
             plt.plot(data[species_mask][xcol], data[species_mask][ycol], '.',
                      label=species[i])
     except Exception:
-        print('Invalid data for plotting as scatterplot.')
-        sys.exit(1)
+        raise Exception('Invalid data for plotting as scatterplot.')
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     plt.legend()
     try:
         plt.title(title)
     except Exception:
-        print('Invalid plot title parameter.')
+        raise TypeError('Invalid plot title parameter.')
     try:
         fig.savefig(output_file, bbox_inches='tight')
         current_dir = os.getcwd()
         print('Output plot saved to: ' + current_dir + '/' + output_file)
     except Exception:
-        print('Invalid output path to save plot.')
+        raise Exception('Invalid output path to save plot.')
 
 
 def make_multi_plot(data, species, title, xcol, ycol, scat_xlabel,
@@ -238,20 +234,17 @@ def make_multi_plot(data, species, title, xcol, ycol, scat_xlabel,
     try:
         fig = plt.figure(figsize=figsize, dpi=150)
     except Exception:
-        print('Invalid figsize parameter.')
-        sys.exit(1)
-
+        raise TypeError('Invalid figsize parameter.')
     # add boxplots
     ax = fig.add_subplot(121)
     try:
         ax.boxplot(data[xticks])
     except Exception:
-        print('Invalid data for plotting as boxplots.')
-        sys.exit(1)
+        raise TypeError('Invalid data for plotting as boxplots.')
     try:
         ax.set_xticklabels(xticks, rotation='vertical')
     except Exception:
-        print('Invalid xtick labels parameter.')
+        raise TypeError('Invalid xtick labels parameter.')
     plt.ylabel(box_ylabel)
     plt.xlabel(box_xlabel)
     ax.spines['right'].set_visible(False)
@@ -265,8 +258,7 @@ def make_multi_plot(data, species, title, xcol, ycol, scat_xlabel,
             plt.plot(data[species_mask][xcol], data[species_mask][ycol], '.',
                      label=species[i])
     except Exception:
-        print('Invalid data for plotting as scatterplot.')
-        sys.exit(1)
+        raise Exception('Invalid data for plotting as scatterplot.')
     plt.ylabel(scat_ylabel)
     plt.xlabel(scat_xlabel)
     plt.legend()
@@ -277,11 +269,11 @@ def make_multi_plot(data, species, title, xcol, ycol, scat_xlabel,
     try:
         plt.suptitle(title)
     except Exception:
-        print('Invalid plot title parameter.')
+        raise Exception('Invalid plot title parameter.')
 
     try:
         fig.savefig(output_file, bbox_inches='tight')
         current_dir = os.getcwd()
         print('Output plot saved to: ' + current_dir + '/' + output_file)
     except Exception:
-        print('Invalid output path to save plot.')
+        raise Exception('Invalid output path to save plot.')

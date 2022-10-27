@@ -49,8 +49,8 @@ The arguments are:\
 ## Input File
 
 The expected input Iris data file is a csv or text file with columns\
-corresponding to measurements of the Iris flower. 
-THe file must be comma delimited.
+corresponding to measurements of the Iris flower.\
+The file must be comma delimited.
 
 ## Examples
 To produce output plots for Iris data:\
