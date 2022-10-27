@@ -43,9 +43,5 @@ jobs:
           activate-environment: swe4s 
           environment-file: environment.yml # defualt env is test
       - run: | # for multiple lines
-#          python3 -m pip install --upgrade pip
-#          pip install numpy
-#          pip install matplotlib
-#          pip install pandas
           cd tests
           python -m unittest unit_tests
