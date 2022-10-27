@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import sys
 import matplotlib.pyplot as plt
+sys.path.append('../')
 
 
 def open_file(filename):
