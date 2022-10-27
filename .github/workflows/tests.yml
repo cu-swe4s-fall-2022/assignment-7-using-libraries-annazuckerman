@@ -36,6 +36,9 @@ jobs:
 
   unit_tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0} # jobs are run independently in parallel; anytime want conda env need to change for job (only works for ubuntu)
     steps:
       - uses: actions/checkout@v2
       - uses: conda-incubator/setup-miniconda@v2
