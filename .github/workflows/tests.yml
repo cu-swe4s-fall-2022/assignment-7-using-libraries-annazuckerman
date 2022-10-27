@@ -41,4 +41,5 @@ jobs:
       - run: | # for multiple lines
           python3 -m pip install --upgrade pip
           pip install numpy
-          python -m unittest tests/unit_tests
+          cd tests
+          python -m unittest unit_tests
