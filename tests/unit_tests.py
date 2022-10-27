@@ -61,7 +61,7 @@ class TestUtils(unittest.TestCase):
         cls.assertNotEqual(dp.get_file_dimensions('test1.data'), (150, 5))
 
         # error raising tests
-        cls.assertRaises(IsADirectoryError, dp.get_file_dimensions, './tests')
+        cls.assertRaises(IsADirectoryError, dp.get_file_dimensions, '../tests')
         cls.assertRaises(FileNotFoundError, dp.get_file_dimensions,
                          'testing.csv')
 
